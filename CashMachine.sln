@@ -1,0 +1,54 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30804.86
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C71B9157-9688-4CFB-812C-D0DD3AB74F21}"
+	ProjectSection(SolutionItems) = preProject
+		global.json = global.json
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CashMachineApp", "CashMachineApp.csproj", "{F8367AC0-D731-4946-BCA8-972A6DBE9730}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CashMachineLogic", "CashMachineLogic\CashMachineLogic.csproj", "{7CBC2FE9-C388-41D8-8747-38F636B2ADB5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CashMachineModel", "CashMachineModel\CashMachineModel.csproj", "{5478A8BA-86AD-4546-BBCA-C7B3595627AF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CashMachineRepository", "CashMachineRepository\CashMachineRepository.csproj", "{1BBB2383-9E48-422B-A442-50158D2B7C1A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CashMachineTests", "CashMachineTests\CashMachineTests\CashMachineTests.csproj", "{C058C210-446D-416A-BD49-B9713E976D05}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F8367AC0-D731-4946-BCA8-972A6DBE9730}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8367AC0-D731-4946-BCA8-972A6DBE9730}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8367AC0-D731-4946-BCA8-972A6DBE9730}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8367AC0-D731-4946-BCA8-972A6DBE9730}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7CBC2FE9-C388-41D8-8747-38F636B2ADB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CBC2FE9-C388-41D8-8747-38F636B2ADB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CBC2FE9-C388-41D8-8747-38F636B2ADB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CBC2FE9-C388-41D8-8747-38F636B2ADB5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5478A8BA-86AD-4546-BBCA-C7B3595627AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5478A8BA-86AD-4546-BBCA-C7B3595627AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5478A8BA-86AD-4546-BBCA-C7B3595627AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5478A8BA-86AD-4546-BBCA-C7B3595627AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1BBB2383-9E48-422B-A442-50158D2B7C1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1BBB2383-9E48-422B-A442-50158D2B7C1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1BBB2383-9E48-422B-A442-50158D2B7C1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1BBB2383-9E48-422B-A442-50158D2B7C1A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C058C210-446D-416A-BD49-B9713E976D05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C058C210-446D-416A-BD49-B9713E976D05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C058C210-446D-416A-BD49-B9713E976D05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C058C210-446D-416A-BD49-B9713E976D05}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B65CC77E-EFFF-479D-978E-F346AF031352}
+	EndGlobalSection
+EndGlobal

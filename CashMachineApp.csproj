@@ -1,0 +1,61 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+	<PropertyGroup>
+		<TargetFramework>netcoreapp3.0</TargetFramework>
+		<PreserveCompilationContext>true</PreserveCompilationContext>
+		<AssemblyName>application-code</AssemblyName>
+		<OutputType>Exe</OutputType>
+		<PackageId>application-code</PackageId>
+	</PropertyGroup>
+	<ItemGroup>
+	  <Compile Remove="CashMachineLogic\**" />
+	  <Compile Remove="CashMachineModel\**" />
+	  <Compile Remove="CashMachineRepository\**" />
+	  <Compile Remove="CashMachineServices\**" />
+	  <Compile Remove="CashMachineTests\**" />
+	  <Content Remove="CashMachineLogic\**" />
+	  <Content Remove="CashMachineModel\**" />
+	  <Content Remove="CashMachineRepository\**" />
+	  <Content Remove="CashMachineServices\**" />
+	  <Content Remove="CashMachineTests\**" />
+	  <EmbeddedResource Remove="CashMachineLogic\**" />
+	  <EmbeddedResource Remove="CashMachineModel\**" />
+	  <EmbeddedResource Remove="CashMachineRepository\**" />
+	  <EmbeddedResource Remove="CashMachineServices\**" />
+	  <EmbeddedResource Remove="CashMachineTests\**" />
+	  <None Remove="CashMachineLogic\**" />
+	  <None Remove="CashMachineModel\**" />
+	  <None Remove="CashMachineRepository\**" />
+	  <None Remove="CashMachineServices\**" />
+	  <None Remove="CashMachineTests\**" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="app.config" />
+		<None Include="wwwroot\css\application.css" />
+		<None Update="wwwroot\**\*;Views\**\*;Areas\**\Views">
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</None>
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="AutoMapper" Version="10.1.1" />
+		<PackageReference Include="JavascriptEngineSwitcher.ChakraCore" Version="3.1.8" />
+		<PackageReference Include="JavascriptEngineSwitcher.ChakraCore.native.linux-x64" Version="3.1.8" />
+		<PackageReference Include="JavascriptEngineSwitcher.ChakraCore.native.osx-x64" Version="3.1.8" />
+		<PackageReference Include="JavascriptEngineSwitcher.ChakraCore.native.win-x64" Version="3.1.8" />
+		<PackageReference Include="JavascriptEngineSwitcher.Extensions.MsDependencyInjection" Version="3.1.0" />
+		<PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.4" />
+		<PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="2.2.0" />
+		<PackageReference Include="MSTest.TestFramework" Version="1.1.11" />
+		<PackageReference Include="React.AspNet" Version="5.2.11" />
+	</ItemGroup>
+	<ItemGroup>
+		<Content Update="Views\Home\Index.cshtml">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="wwwroot\images\" />
+	</ItemGroup>
+	<ItemGroup>
+	  <ProjectReference Include="CashMachineLogic\CashMachineLogic.csproj" />
+	</ItemGroup>
+</Project>

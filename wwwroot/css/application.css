@@ -1,0 +1,136 @@
+﻿.title {
+    padding-left: 5px;
+    font-size:100px;
+}
+
+.applicationContainer {
+    margin-top: 10px;
+    border: 1px solid #0094ff
+}
+
+.coinBox {
+    border: 3px solid;
+    margin-left: 35px;
+    margin-bottom: 10px;
+}
+
+.coinInfo {
+    margin-top: 15px;
+    margin-left: 75px;
+}
+
+.coinInfo, spam {
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.coinButtons {
+    margin-left: 40px;
+    margin-top: 35px;
+    padding-right: 63px;
+}
+
+.totalValue {
+    font-size: 20px;
+}
+
+.mT-20px {
+    margin-top: 20px;
+}
+
+.mB-20px {
+    margin-bottom: 20px;
+}
+
+.mL-20px {
+    margin-left: 20px;
+}
+
+.mL-30px {
+    margin-left: 30px;
+}
+
+.w100px {
+    width: 100px;
+}
+
+.w40px {
+    width: 40px;
+}
+
+#message {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+#inner-message {
+    margin: 0 auto;
+}
+
+.spanTotal {   
+    font-size: 25px;
+}
+
+/*coin*/
+@keyframes rotation {
+    0% {
+        transform: rotate3d(0, 1, 0, 0deg);
+    }
+
+    50% {
+        transform: rotate3d(0, 1, 0, 180deg);
+    }
+
+    100% {
+        transform: rotate3d(0, 1, 0, 360deg);
+    }
+}
+
+.CoinContainer {
+    width: 100px;
+    height: 100px;
+    perspective: 1000;
+    margin: 1em auto;
+    margin-left: -140px;
+}
+
+.coin {
+    position: relative;
+    top: 25px;
+    left: 25px;
+    width: 75px;
+    height: 75px;
+    text-align: center;
+    line-height: 70px;
+    animation-name: rotation;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    animation-duration: 2.5s;
+    transform: rotateY(0deg);
+    transform-style: preserve-3d;
+}
+
+.face {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    backface-visibility: hidden;
+}
+
+.heads {
+    background-color: green;
+    z-index: 2;
+    transform: rotateY(0deg);
+}
+
+.tails {
+    background-color: gray;
+    z-index: 1;
+    transform: rotateY(180deg);
+}
+/*coin*/

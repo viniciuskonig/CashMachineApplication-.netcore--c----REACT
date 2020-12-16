@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.4</TargetFramework>
+    <AssemblyName>CashMachineLogic</AssemblyName>
+    <RootNamespace>CashMachineLogic</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CashMachineModel\CashMachineModel.csproj" />
+    <ProjectReference Include="..\CashMachineRepository\CashMachineRepository.csproj" />
+  </ItemGroup>
+
+</Project>
