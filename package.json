@@ -94,7 +94,7 @@
       "resolved": "https://registry.npmjs.org/invariant/-/invariant-2.2.4.tgz",
       "version": "2.2.4"
     },
-    "jquery": "^1.9.1",
+    "jquery": ">=3.5.0",
     "js-tokens": {
       "integrity": "sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==",
       "resolved": "https://registry.npmjs.org/js-tokens/-/js-tokens-4.0.0.tgz",
