@@ -18,6 +18,7 @@ namespace CashMachineLogic
         {
             try
             {
+                base.ValidateCoinValue(coin);
                 base.ValidateDuplicatedCoin(coin);
                 var currentState = CoinRepository.CurrentState;
 
@@ -25,7 +26,7 @@ namespace CashMachineLogic
             }
             catch (Exception ex)
             {
-                if (ex is DuplicatedCoinException)
+                if (ex is DuplicatedCoinException || ex is CoinValueLessThanZeroException)
                 {
                     throw ex;
                 }
