@@ -50,8 +50,18 @@ namespace CashMachineTests
         {
             ICoinLogic logic = new CoinLogic();
             
-
             Assert.Throws<CoinValueLessThanZeroException>(() => logic.AddCoin(new Coin() { Value = -1, Quantity = 2 }));
+        }
+
+        /// <summary>
+        /// Test AddCoin with a coin that value is Zero (Fail)
+        /// </summary>
+        [Test]
+        public void AddCoinWithQuantityLessThanZeroValueTest()
+        {
+            ICoinLogic logic = new CoinLogic();
+
+            Assert.Throws<CoinQuantityLessThanZeroException>(() => logic.AddCoin(new Coin() { Value = 1, Quantity = -1 }));
         }
 
         /// <summary>

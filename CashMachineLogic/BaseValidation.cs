@@ -7,13 +7,22 @@ namespace CashMachineLogic
 {
     public class BaseValidation 
     {
-        public void ValidateCoinValue(Coin coin)
+        public void ValidateCoinValueLessThenZero(Coin coin)
         {
             if (coin.Value < 0)
             {
                 throw new CoinValueLessThanZeroException();
             }
         }
+
+        public void ValidadeQuantityLessThenZero(Coin coin)
+        {
+            if (coin.Quantity < 0)
+            {
+                throw new CoinQuantityLessThanZeroException();
+            }
+        }
+
 
         public void ValidateForChangeBalance(decimal requiredAmount)
         {

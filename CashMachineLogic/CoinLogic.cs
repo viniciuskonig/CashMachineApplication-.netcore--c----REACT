@@ -9,7 +9,6 @@ namespace CashMachineLogic
 {
     public class CoinLogic : BaseValidation, ICoinLogic
     {
-
         /// <summary>
         /// Method to add new coins
         /// </summary>
@@ -18,7 +17,8 @@ namespace CashMachineLogic
         {
             try
             {
-                base.ValidateCoinValue(coin);
+                base.ValidateCoinValueLessThenZero(coin);
+                base.ValidadeQuantityLessThenZero(coin);
                 base.ValidateDuplicatedCoin(coin);
                 var currentState = CoinRepository.CurrentState;
 
@@ -26,7 +26,7 @@ namespace CashMachineLogic
             }
             catch (Exception ex)
             {
-                if (ex is DuplicatedCoinException || ex is CoinValueLessThanZeroException)
+                if (ex is DuplicatedCoinException || ex is CoinValueLessThanZeroException || ex is CoinQuantityLessThanZeroException)
                 {
                     throw ex;
                 }
@@ -84,7 +84,10 @@ namespace CashMachineLogic
             {
                 var currentState = CoinRepository.CurrentState;
 
-                //Checks if the coin is not being overwritten
+                base.ValidateCoinValueLessThenZero(coin);
+                base.ValidadeQuantityLessThenZero(coin);
+
+                //Checks if the coin is not being overwritten by old state
                 base.ValidadeIsCurrentVersion(coin, currentState);
 
                 CoinRepository.CurrentState.
