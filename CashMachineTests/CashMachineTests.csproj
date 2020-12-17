@@ -16,7 +16,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\CashMachineLogic\CashMachineLogic.csproj" />
+    <ProjectReference Include="..\CashMachineLogic\CashMachineLogic.csproj" />
+    <ProjectReference Include="..\CashMachineModel\CashMachineModel.csproj" />
   </ItemGroup>
 
 </Project>
