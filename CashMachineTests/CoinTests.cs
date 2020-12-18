@@ -1,5 +1,6 @@
 using CashMachineLogic;
 using CashMachineModel;
+using CashMachineRepository;
 using NUnit.Framework;
 using System;
 using System.Linq;
@@ -13,7 +14,7 @@ namespace CashMachineTests
         [SetUp]
         public void SetupBeforeEachTest()
         {
-            ICoinLogic logic = new CoinLogic();
+            ICoinLogic logic = new CoinLogic(new CoinRepository());
             logic.ResetBalance();
         }
 
@@ -23,7 +24,7 @@ namespace CashMachineTests
         [Test]
         public void AddCoinTest()
         {
-            ICoinLogic logic = new CoinLogic();
+            ICoinLogic logic = new CoinLogic(new CoinRepository());
             logic.AddCoin(new Coin() { Value = 2, Quantity = 2 });
             logic.AddCoin(new Coin() { Value = 1, Quantity = 2 });
             Assert.AreEqual(2, logic.GetCoins().Count);
@@ -35,7 +36,7 @@ namespace CashMachineTests
         [Test]
         public void AddCoinDuplicatedValueTest()
         {
-            ICoinLogic logic = new CoinLogic();
+            ICoinLogic logic = new CoinLogic(new CoinRepository());
             logic.AddCoin(new Coin() { Value = 1, Quantity = 2 });
 
             Assert.Throws<DuplicatedCoinException>(() => logic.AddCoin(new Coin() { Value = 1, Quantity = 2 }));
@@ -48,7 +49,7 @@ namespace CashMachineTests
         [Test]
         public void AddCoinWithValueLessThanZeroValueTest()
         {
-            ICoinLogic logic = new CoinLogic();
+            ICoinLogic logic = new CoinLogic(new CoinRepository());
             
             Assert.Throws<CoinValueLessThanZeroException>(() => logic.AddCoin(new Coin() { Value = -1, Quantity = 2 }));
         }
@@ -59,7 +60,7 @@ namespace CashMachineTests
         [Test]
         public void AddCoinWithQuantityLessThanZeroValueTest()
         {
-            ICoinLogic logic = new CoinLogic();
+            ICoinLogic logic = new CoinLogic(new CoinRepository());
 
             Assert.Throws<CoinQuantityLessThanZeroException>(() => logic.AddCoin(new Coin() { Value = 1, Quantity = -1 }));
         }
@@ -70,7 +71,7 @@ namespace CashMachineTests
         [Test]
         public void UpdateCoinTest()
         {
-            ICoinLogic logic = new CoinLogic();
+            ICoinLogic logic = new CoinLogic(new CoinRepository());
             logic.AddCoin(new Coin() { Value = 1, Quantity = 2 });
 
             var coinToBeUpdated = logic.GetCoins().Where(o => o.Value == 1).FirstOrDefault();
@@ -90,7 +91,7 @@ namespace CashMachineTests
         [Test]
         public void UpdateCoinOutdatedTest()
         {
-            ICoinLogic logic = new CoinLogic();
+            ICoinLogic logic = new CoinLogic(new CoinRepository());
             logic.AddCoin(new Coin() { Value = 1, Quantity = 2 });
 
             var coinToBeUpdated = logic.GetCoins().Where(o => o.Value == 1).FirstOrDefault();
@@ -113,7 +114,7 @@ namespace CashMachineTests
         [Test]
         public void GetBalanceTest()
         {
-            ICoinLogic logic = new CoinLogic();
+            ICoinLogic logic = new CoinLogic(new CoinRepository());
             logic.AddCoin(new Coin() { Value = 1, Quantity = 5 });
             logic.AddCoin(new Coin() { Value = 2, Quantity = 5 });
             var total = logic.GetBalance();
@@ -127,7 +128,7 @@ namespace CashMachineTests
         public void GiveChangeToGoToZeroBalanceTest()
         {
             //Add balance
-            ICoinLogic logic = new CoinLogic();
+            ICoinLogic logic = new CoinLogic(new CoinRepository());
             logic.AddCoin(new Coin() { Value = 0.5m, Quantity = 1 });
             logic.AddCoin(new Coin() { Value = 1, Quantity = 1 });
             logic.AddCoin(new Coin() { Value = 2, Quantity = 1 });
@@ -151,7 +152,7 @@ namespace CashMachineTests
         [Test]
         public void GiveMoreChangeThenCurrentBalanceTest()
         {
-            ICoinLogic logic = new CoinLogic();
+            ICoinLogic logic = new CoinLogic(new CoinRepository());
             logic.AddCoin(new Coin() { Value = 2, Quantity = 1 });
             Assert.Throws<NotEnoughBalanceForChangeException>(() => logic.GiveChange(3m));
         }
@@ -163,7 +164,7 @@ namespace CashMachineTests
         [Test]
         public void GiveMoreChangeThenCurrentQuantityTest()
         {
-            ICoinLogic logic = new CoinLogic();
+            ICoinLogic logic = new CoinLogic(new CoinRepository());
             logic.AddCoin(new Coin() { Value = 2, Quantity = 2 });
             logic.AddCoin(new Coin() { Value = 1, Quantity = 1 });
             Assert.Throws<NotEnougthQuantityForChangeException>(() => logic.GiveChange(2.3m));
@@ -176,7 +177,7 @@ namespace CashMachineTests
         public void GiveChangeEvenIfLowerIsntThenHighestAmountQuantityTest()
         {
             //Add balance
-            ICoinLogic logic = new CoinLogic();
+            ICoinLogic logic = new CoinLogic(new CoinRepository());
             logic.AddCoin(new Coin() { Value = 0.10m, Quantity = 10 });
             logic.AddCoin(new Coin() { Value = 0.13m, Quantity = 2 });
             logic.AddCoin(new Coin() { Value = 0.25m, Quantity = 1 });

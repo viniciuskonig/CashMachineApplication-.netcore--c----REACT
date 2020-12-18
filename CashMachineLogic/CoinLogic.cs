@@ -9,6 +9,13 @@ namespace CashMachineLogic
 {
     public class CoinLogic : BaseValidation, ICoinLogic
     {
+        private readonly ICoinRepository _coinRepository;
+
+        public CoinLogic(ICoinRepository coinRepository)
+        {
+            _coinRepository = coinRepository;
+        }
+
         /// <summary>
         /// Method to add new coins
         /// </summary>
@@ -19,9 +26,9 @@ namespace CashMachineLogic
             {
                 base.ValidateCoinValueLessThenZero(coin);
                 base.ValidadeQuantityLessThenZero(coin);
-                base.ValidateDuplicatedCoin(coin);
-                var currentState = CoinRepository.CurrentState;
+                base.ValidateDuplicatedCoin(coin, this);
 
+                var currentState = _coinRepository.GetCoins();
                 currentState.Add(coin);
             }
             catch (Exception ex)
@@ -43,8 +50,8 @@ namespace CashMachineLogic
         {
             try
             {
-                var total = CoinRepository.InitialState.Select(x => x.Quantity * x.Value).Sum();
-
+                //var total = 
+                var total = _coinRepository.GetTotal();
                 return total;
             }
             catch (Exception ex)
@@ -62,8 +69,7 @@ namespace CashMachineLogic
         {
             try
             {
-                var coin = CoinRepository.CurrentState.OrderBy(o => o.Value).ToList();
-
+                var coin = _coinRepository.GetCoins().OrderBy(o => o.Value).ToList();
                 return coin;
             }
             catch (Exception ex)
@@ -82,7 +88,7 @@ namespace CashMachineLogic
         {
             try
             {
-                var currentState = CoinRepository.CurrentState;
+                var currentState = _coinRepository.GetCoins();
 
                 base.ValidateCoinValueLessThenZero(coin);
                 base.ValidadeQuantityLessThenZero(coin);
@@ -90,15 +96,7 @@ namespace CashMachineLogic
                 //Checks if the coin is not being overwritten by old state
                 base.ValidadeIsCurrentVersion(coin, currentState);
 
-                CoinRepository.CurrentState.
-                    Where(x => x.Value == coin.Value)
-                    .Select(x =>
-                    {
-                        x.Quantity = coin.Quantity;
-                        x.UpdatedOn = DateTime.Now;
-                        return x;
-                    })
-                    .ToList();
+                _coinRepository.UpdateCoin(coin);
             }
             catch (Exception ex)
             {
@@ -120,9 +118,9 @@ namespace CashMachineLogic
         {
             try
             {
-                base.ValidateForChangeBalance(requiredAmount);
+                base.ValidateForChangeBalance(requiredAmount, this);
 
-                var coins = CoinRepository.CurrentState.OrderByDescending(o => o.Value).ToList();
+                var coins = _coinRepository.GetCoins().OrderByDescending(o => o.Value).ToList();
                 var coinsForSimulation = DeepCloneHelper.DeepClone(coins.Select(c => c).ToList());
                 decimal amountRemainingForSimulation = DeepCloneHelper.DeepClone(requiredAmount);
 
@@ -171,7 +169,7 @@ namespace CashMachineLogic
                     if (remainingValue != 0)
                     {
                         var coin = c;
-                        var quantity = new ProcessCoin(coin, remainingValue).CalculateQuantityForChange();
+                        var quantity = new ProcessCoin(coin, remainingValue).CalculateQuantityForChange(this);
 
                         remainingValue -= coin.Value * quantity;
 
@@ -206,7 +204,7 @@ namespace CashMachineLogic
                 {
                     this.UpdateCoin(lastCoin);
                 }
-                
+
                 //Skip last used coin, in order to get the remaning value
                 var lowerCoins = coins.Where(o => o.Value < lastCoin.Value).OrderByDescending(o => o.Value).ToList();
                 if (lowerCoins.Count > 0)
@@ -221,7 +219,7 @@ namespace CashMachineLogic
 
         public void ResetBalance()
         {
-            CoinRepository.CurrentState.Clear();
+            _coinRepository.ResetBalance();
         }
     }
 }

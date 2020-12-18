@@ -1,5 +1,6 @@
 using AutoMapper;
 using CashMachineLogic;
+using CashMachineRepository;
 using JavaScriptEngineSwitcher.ChakraCore;
 using JavaScriptEngineSwitcher.Extensions.MsDependencyInjection;
 using Microsoft.AspNetCore.Builder;
@@ -45,7 +46,8 @@ namespace CashMachineApp
             });
 
             IMapper mapper = mapperConfig.CreateMapper();
-            ICoinLogic coinLogic = new CoinLogic();
+            ICoinRepository coinRepository = new CoinRepository();
+            ICoinLogic coinLogic = new CoinLogic(coinRepository);
 
             services.AddSingleton(mapper);
             services.AddSingleton(coinLogic);

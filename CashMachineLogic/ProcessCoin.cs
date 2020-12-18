@@ -31,12 +31,10 @@ namespace CashMachineLogic
         /// Get the highest amout of coins to give as change
         /// </summary>
         /// <returns></returns>
-        public int CalculateQuantityForChange()
+        public int CalculateQuantityForChange(CoinLogic logic)
         {
             try
             {
-                ICoinLogic logic = new CoinLogic();
-
                 var coins = logic.GetCoins();
                 var coinToProcess = coins.Where(x => x.Value == CoinToProcess.Value).SingleOrDefault();
                 var quantity = (RequiredAmount / CoinToProcess.Value);

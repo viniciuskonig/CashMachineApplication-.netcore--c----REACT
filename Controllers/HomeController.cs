@@ -83,11 +83,12 @@ namespace CashMachineApp.Controllers
                 return Json(new Result() { Message = ex.Message, Error = true });
             }
         }
-    }
 
-    public class Result {
-        public dynamic Data { get; set; }
-        public string Message { get; set; }
-        public bool Error { get; set; }
+        private class Result
+        {
+            public dynamic Data { get; set; }
+            public string Message { get; set; }
+            public bool Error { get; set; }
+        }
     }
 }

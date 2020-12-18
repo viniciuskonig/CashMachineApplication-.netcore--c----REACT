@@ -24,9 +24,8 @@ namespace CashMachineLogic
         }
 
 
-        public void ValidateForChangeBalance(decimal requiredAmount)
+        public void ValidateForChangeBalance(decimal requiredAmount, CoinLogic logic)
         {
-            ICoinLogic logic = new CoinLogic();
             var total = logic.GetBalance();
             if (requiredAmount > total)
             {
@@ -34,9 +33,8 @@ namespace CashMachineLogic
             }
         }
 
-        public void ValidateDuplicatedCoin(Coin coin)
+        public void ValidateDuplicatedCoin(Coin coin, CoinLogic logic)
         {
-            ICoinLogic logic = new CoinLogic();
             if (logic.GetCoins().Any(o => o.Value == coin.Value))
             {
                 throw new DuplicatedCoinException();
